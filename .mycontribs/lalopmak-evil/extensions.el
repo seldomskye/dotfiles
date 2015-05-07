@@ -1,0 +1,56 @@
+(defvar lalopmak-evil-post-extensions
+  '(
+    lalopmak-evil
+    lalopmak-evil-org-mode
+  )
+)
+(defvar lalopmak-evil-excluded-packages
+  '(
+    evil-org-mode
+))
+(defun lalopmak-evil/init-lalopmak-evil ()
+  (use-package lalopmak-evil 
+    :init
+    (progn
+      (require 'helm-config)
+      (helm-mode 1))
+    :config
+    (progn
+      (global-unset-key (kbd "C-x c"))
+      (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
+      (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+      (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+      (when (executable-find "curl")
+        (setq helm-google-suggest-use-curl-p t))
+      (setq helm-quick-update                     t ; do not display invisible candidates
+            helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+            helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
+            helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+            helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+            helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+            helm-ff-file-name-history-use-recentf t)
+
+      ;; Replace M-x with the superior version
+      (global-set-key (kbd "M-x") 'helm-M-x)
+      (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+      ;; Change buffer switch to helm
+      (set-in-all-evil-states-but-insert "b" 'helm-mini)
+      (set-in-all-evil-states-but-insert "B" 'helm-find-files)
+      ;; helm-semantic-or-imenu is bound to prefix i, and should probably be moved somewhere better
+      ;; or I need to devote a key to just be C-c, that'd be pretty hot actually, maybe f someshit
+
+      ;; helm-find
+      ;; hel-occur is probably worth usin
+      (set-in-all-evil-states-but-insert (kbd "M-f") 'helm-occur)
+
+      ;; helm-register
+      (set-in-all-evil-states-but-insert (kbd "M-r") 'helm-register))
+    )
+)
+
+(defun lalopmak-evil/init-lalopmak-evil-org-mode ()
+  (add-to-load-path (expand-file-name"~/.mycontribs/lalopmak-evil/extensions/lalopmak-evil-org-mode/"))
+  (require 'lalopmak-evil-org-mode)
+
+  )

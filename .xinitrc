@@ -1,0 +1,26 @@
+
+# Sets the pointre to be more usualy
+ 
+# keymap rebindings, here it sets caps lock to be escape
+
+# uses feh to set my background image
+sh ~/.fehbg &
+
+# Start up programs
+
+# Personal script files
+export PATH=$PATH:~/scripts
+
+redshift.sh
+keyBoardOptions.sh 
+#Xresources
+
+xrdb -merge ~/.Xresources
+
+xset -dpms
+xset s off
+
+
+# run the window manager
+exec i3  
+gsettings set org.gnome.settings-daemon.plugins.cursor active false 

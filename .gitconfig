@@ -1,0 +1,9 @@
+[user]
+	name = Sean Andrews
+	email = andrews.se@husky.neu.edu
+[core]
+	editor = ec
+[color]
+	ui = true
+[credential]
+	helper = cache

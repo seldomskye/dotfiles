@@ -1,0 +1,45 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+map c <lt>pass-next-key><C-c>
+map a :open<Space>
+map A :tabopen<Space>
+map R :winopen<Space>
+map T :open<Space>
+map S :tabopen<Space>
+map f ;s
+map F :dialog<Space>savepage<Return>
+map :tg :tabgroup
+nnoremap Z :undo<Space>
+noremap . ;
+noremap u 2<Up>
+noremap e 2<Down>
+noremap n <PageUp>
+noremap i <PageDown>
+noremap U <PageUp>
+noremap E <PageDown>
+noremap N <Left>
+noremap I <Right>
+noremap h :tabprevious<Return>
+noremap o :tabnext<Return>
+noremap l :back<Return>
+noremap L :back
+"noremap y :forward<Return>
+"noremap Y :forward
+noremap k <lt>find-next>
+noremap K <lt>find-previous>
+noremap z u
+noremap <C-c> <C-v><C-c>
+noremap <C-v> <C-v><C-v>
+noremap <C-a> <Insert><C-a><Insert>
+noremap <C-l> <lt>pass-next-key><C-l>
+noremap ca ;y
+noremap cc <lt>yank-location>
+noremap w :tabclose<Return>
+noremap t f
+noremap s F
+noremap <C-n> <C-o>
+noremap V <Insert>
+set hintchars=ntesiroa
+set titlestring=Icecat
+source! /home/sean/_vimperatorrc.local
+" vim: set ft=vimperator:
