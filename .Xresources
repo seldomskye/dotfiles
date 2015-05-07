@@ -35,8 +35,21 @@ xterm*scrollTtyOutput: false
 URxvt*font xft:DejaVu:size=11
 URxvt.scroolstyle: xterm
 
-URxvt*.transparent: true
+URxvt*.transparent: false
 URxvt*.shading: 20
+
+
+! Making urls clickable and a specific color
+URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.colorUL: #4682B4
+
+! Better tab coloration
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
 
 urxvt*foreground: #c6c6c6 
 urxvt*background: #303030
