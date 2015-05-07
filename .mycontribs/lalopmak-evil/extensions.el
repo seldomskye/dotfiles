@@ -52,5 +52,39 @@
 (defun lalopmak-evil/init-lalopmak-evil-org-mode ()
   (add-to-load-path (expand-file-name"~/.mycontribs/lalopmak-evil/extensions/lalopmak-evil-org-mode/"))
   (require 'lalopmak-evil-org-mode)
+  (defun kk/run-with-no-helm (orig-func &rest args)
+    "Run a function without helm completion."
+    (if (boundp 'helm-mode)
+        (let ((orig-helm-mode helm-mode))
+          (unwind-protect
+              (progn
+                (helm-mode 0)
+                (apply orig-func args)
+                )
+            (helm-mode (if orig-helm-mode 1 0))))
+      (apply orig-func args)
+      ))
+
+  (advice-add 'org-icompleting-read :around 'kk/run-with-no-helm)
+  (advice-add 'org-completing-read :around 'kk/run-with-no-helm)
+  (advice-add 'org-completing-read-no-i :around 'kk/run-with-no-helm)
+  ; I store the specifics of my org configuration with my org files because updating projects is annoying otherwise
+  (add-to-load-path "~/org/")
+  (load "tag_groups")
+
+
+  ; copied from Sacha Chua's config
+  (setq org-todo-keywords
+        '((sequence
+           "TODO(t)"  ; next action
+           "STARTED(s)"
+           "WAITING(w)"
+           "SOMEDAY(.)" "|" "DONE(x)" "CANCELLED(c)")
+          ))
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:foreground "#ef2929" :weight bold))
+          ("DONE" . (:foreground "#cyan-2" :weight bold))
+          ("WAITING" . (:foreground "#c4a000" :weight bold))
+          ("SOMEDAY" . (:foreground "gray" :weight bold))))
 
   )
