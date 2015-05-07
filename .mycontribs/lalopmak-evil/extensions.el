@@ -38,11 +38,6 @@
       (set-in-all-evil-states-but-insert "b" 'helm-mini)
       (set-in-all-evil-states-but-insert "B" 'helm-find-files)
       ;; helm-semantic-or-imenu is bound to prefix i, and should probably be moved somewhere better
-      ;; or I need to devote a key to just be C-c, that'd be pretty hot actually, maybe f someshit
-
-      ;; helm-find
-      ;; hel-occur is probably worth usin
-      (set-in-all-evil-states-but-insert (kbd "M-f") 'helm-occur)
 
       ;; helm-register
       (set-in-all-evil-states-but-insert (kbd "M-r") 'helm-register))
@@ -68,6 +63,7 @@
   (advice-add 'org-icompleting-read :around 'kk/run-with-no-helm)
   (advice-add 'org-completing-read :around 'kk/run-with-no-helm)
   (advice-add 'org-completing-read-no-i :around 'kk/run-with-no-helm)
+
   ; I store the specifics of my org configuration with my org files because updating projects is annoying otherwise
   (add-to-load-path "~/org/")
   (load "tag_groups")
@@ -87,4 +83,8 @@
           ("WAITING" . (:foreground "#c4a000" :weight bold))
           ("SOMEDAY" . (:foreground "gray" :weight bold))))
 
+  (evil-leader/set-key
+    "Cc" 'org-capture
+    "Ca" 'org-agenda
+    )
   )
