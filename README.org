@@ -1,0 +1,7 @@
+#+TITLE: My dotfiles
+* Things to note
+I use colemak and lalopmak for my spacemacs bindings
+My the version of lalopmak evil I'm sitting on has been patched so it works, unlike the one currently sitting in the repository for lalopmak evil
+
+xmobar, xmonad, and urxvt need to be installed
+

@@ -22,5 +22,5 @@ xset s off
 
 
 # run the window manager
-exec i3  
+exec xmonad
 gsettings set org.gnome.settings-daemon.plugins.cursor active false 
