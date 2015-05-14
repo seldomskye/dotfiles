@@ -1,5 +1,3 @@
-"3.8.2 (created: 2014/02/13 23:52:43)
-
 map c <lt>pass-next-key><C-c>
 map a :open<Space>
 map A :tabopen<Space>
@@ -8,7 +6,6 @@ map T :open<Space>
 map S :tabopen<Space>
 map f ;s
 map F :dialog<Space>savepage<Return>
-map :tg :tabgroup
 nnoremap Z :undo<Space>
 noremap . ;
 noremap u 2<Up>
@@ -41,5 +38,5 @@ noremap <C-n> <C-o>
 noremap V <Insert>
 set hintchars=ntesiroa
 set titlestring=Icecat
-source! /home/sean/_vimperatorrc.local
+"source! /home/sean/_vimperatorrc.local
 " vim: set ft=vimperator:
