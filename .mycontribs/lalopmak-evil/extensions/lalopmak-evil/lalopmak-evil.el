@@ -324,9 +324,6 @@
 ;; (set-in-all-evil-states-but-insert "\C-t" 'evil-jump-backward)
 ;; (set-in-all-evil-states-but-insert "\C-p" 'evil-jump-forward)
 
-;;Ace jump
-(set-in-all-evil-states-but-insert "f" 'evil-ace-jump-char-mode)
-(set-in-all-evil-states-but-insert "w" 'evil-ace-jump-word-mode)
 
 ;;old find char/reverse for use in macros
 (set-in-all-evil-states-but-insert "\M-f" 'evil-find-char)
