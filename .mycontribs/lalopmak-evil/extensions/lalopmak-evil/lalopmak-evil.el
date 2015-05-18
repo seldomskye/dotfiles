@@ -326,8 +326,9 @@
 
 
 ;;old find char/reverse for use in macros
-(set-in-all-evil-states-but-insert "\M-f" 'evil-find-char)
-(set-in-all-evil-states-but-insert "\M-w" 'evil-find-char-backward)
+;;(set-in-all-evil-states-but-insert "\M-f" 'evil-find-char) 
+;;(set-in-all-evil-states-but-insert "\M-w" 'evil-find-char-backward)
+(set-in-all-evil-states-but-insert "w" 'evil-find-char-backward)
 (set-in-all-evil-states-but-insert "\M-t" 'evil-repeat-find-char)
 
 ;;Line jump
