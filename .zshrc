@@ -1,4 +1,4 @@
-export JAVA_HOME="`/usr/libexec/java_home -v '1.7*'`"
+#export JAVA_HOME="`/usr/libexec/java_home -v '1.7*'`"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -51,7 +51,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/users/sandrews/yesod/.cabal-sandbox/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
