@@ -24,6 +24,7 @@
      auto-completion
      org
      rust
+     restclient
      ;; --------------------------------------------------------
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
@@ -157,6 +158,13 @@ do not already have one."
             (lambda ()
                           (add-hook 'before-save-hook 'my/org-add-ids-to-headlines-in-file nil 'local)))
   )
+
+(defun fc-eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (prin1 (eval (read (current-kill 0)))
+         (current-buffer)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
