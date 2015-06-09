@@ -57,34 +57,46 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget
-    emacs
-    imagemagick
+    # networking
+    wpa_supplicant_gui
+    
     xlibs.xmessage
-    dmenu
-    haskellPackages.ghc
-    haskellPackages.cabal-install
-    haskellPackages.xmobar
+
+    # Desktop manager
     haskellPackages.xmonad
     haskellPackages.xmonad-contrib
     haskellPackages.xmonad-extras
+    dmenu
+    trayer
+    haskellPackages.xmobar
+    haskellPackages.ghc
+    haskellPackages.cabal-install
     haskellPackages.hakyll
+    
     pythonPackages.python
     pythonPackages.pip
     pythonPackages.virtualenv
-    pythonPackages.livestreamer
-    youtube-dl
-    firefoxWrapper
+    
+    
+    # dev tools
     git
     silver-searcher
     unzip
+    emacs
+    rxvt_unicode
+    wget
+    imagemagick
+
+    owncloudclient
+    redshift
+    firefoxWrapper
+    
+    # Media/Entertainment
     vlc
     ncmpcpp
-    owncloudclient
-    trayer
-    redshift
-    wpa_supplicant_gui
+    youtube-dl
     steam
+    pythonPackages.livestreamer
   ];
 
   # List services that you want to enable:
