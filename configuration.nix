@@ -76,10 +76,12 @@
     youtube-dl
     firefoxWrapper
     git
+    silver-searcher
     unzip
     vlc
     ncmpcpp
-    seafile-client
+    owncloudclient
+    trayer
     redshift
     wpa_supplicant_gui
     steam
