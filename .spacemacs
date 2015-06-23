@@ -179,7 +179,7 @@ do not already have one."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(haskell-interactive-popup-error nil)
+ '(haskell-interactive-popup-error nil t)
  '(haskell-notify-p t)
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-suggest-remove-import-lines t)
@@ -189,7 +189,7 @@ do not already have one."
  '(magit-use-overlays nil)
  '(org-agenda-files
    (quote
-    ("~/org/habits.org" "~/Seafile/org/oldNotes.org" "~/Seafile/org/notes.org")))
+    ("~/ownCloud/org/oldNotes.org" "~/ownCloud/org/notes.org" "~/org/habits.org")))
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-id org-info org-irc org-mhe org-rmail org-w3m)))
