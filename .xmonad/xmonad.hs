@@ -53,8 +53,6 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     -- close focused window
     , ((myModMask .|. shiftMask, xK_c     ), kill1)
 
-    -- close the focused window in all workspaces
-    , ((myModMask .|. shiftMask .|. controlMask), kill)
 
      -- Rotate through the available layout algorithms
     , ((myModMask,               xK_space ), sendMessage NextLayout)
