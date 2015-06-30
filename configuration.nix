@@ -110,6 +110,7 @@
     windowManager.xmonad.enable = true;
     windowManager.xmonad.enableContribAndExtras = true;
     desktopManager.xterm.enable = false;
+    driSupport32Bit = true;
   };
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
