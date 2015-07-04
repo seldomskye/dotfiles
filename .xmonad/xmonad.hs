@@ -30,7 +30,7 @@ myConfig = defaultConfig {focusFollowsMouse = False
       , modMask = myModMask
       , keys = myKeys
       , startupHook = setWMName "LG3D" -- to let swing applications work because it's hard coded to check WM name.
-      , terminal = "urxvtc"
+      , terminal = "urxvt"
       }
 
 myFocusFollowsMouse :: Bool
