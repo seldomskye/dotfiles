@@ -74,7 +74,7 @@ export ATLAS=None
 export BLAS=/usr/local/opt/openblas/lib/libopenblas.dylib
 export LAPACK=/usr/local/opt/openblas/lib/libopenblas.dylib
 export AXIS_HOME=~/axis-1_4
-alias ls='ls -ltrhG'
+alias ls='ls -ltrhG --color=always'
 alias ec='emacsclient -tc -a ""'
 alias ctags=/usr/local/Cellar/ctags/5.8/bin/ctags
 alias emacs=/usr/local/Cellar/emacs-mac/emacs-24.4-mac-5.2/bin/emacs-24.4

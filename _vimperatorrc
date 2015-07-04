@@ -38,5 +38,6 @@ noremap <C-n> <C-o>
 noremap V <Insert>
 set hintchars=ntesiroa
 set titlestring=Icecat
+set defsearch=duckduckgo
 "source! /home/sean/_vimperatorrc.local
 " vim: set ft=vimperator:
