@@ -16,7 +16,6 @@
     allowUnfree = true;  
     firefox = {
       enableAdobeFlash = true;
-      enableGoogleTalkPlugin = true;
     };
  };
  users.extraUsers.sean = 
@@ -85,18 +84,20 @@
     emacs
     rxvt_unicode
     wget
-    imagemagick
 
     owncloudclient
     redshift
     firefoxWrapper
+    python34Packages.dantalian
     
     # Media/Entertainment
     vlc
+    mpd
     ncmpcpp
     youtube-dl
-    steam
     pythonPackages.livestreamer
+    deluge
+    steam
   ];
 
   # List services that you want to enable:
@@ -111,6 +112,20 @@
     windowManager.xmonad.enableContribAndExtras = true;
     desktopManager.xterm.enable = false;
     driSupport32Bit = true;
+  };
+  services.mpd = {
+    enable = true; 
+    musicDirectory = "/media/music/"; 
+  };
+
+  services.deluge = {
+    enable = true;
+  };
+
+  services.redshift = {
+    enable = true;
+    latitude = "42.3583333";
+    longitude = "-71.0602778";
   };
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
