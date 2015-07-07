@@ -1,1 +1,2 @@
-feh  --bg-fill '/home/sean/.wallpapers/senjougahara.jpg' 
+#!/bin/sh
+feh  --bg-fill '/home/sean/wallpapers/splatoon-wallpaper-6.jpg' 

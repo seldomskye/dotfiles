@@ -14,6 +14,7 @@ import XMonad.Hooks.ManageHelpers
 main :: IO ()
 main = do
     xmproc <- spawnPipe "xmobar"
+    spawn "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16"
     xmonad $  myConfig
       {  logHook = dynamicLogWithPP xmobarPP
            { ppOutput = hPutStrLn xmproc
