@@ -51,8 +51,8 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 3
 URxvt.tabbed.tab-bg: 0
 
-urxvt*foreground: #c6c6c6 
-urxvt*background: #303030
+urxvt*foreground: #3a3a3a
+urxvt*background: #fdfde7
 
 urxvt*color0:  #c6c6c6 
 urxvt*color1:  #ef2929

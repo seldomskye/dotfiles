@@ -9,10 +9,7 @@ sh ~/.fehbg &
 # Start up programs
 
 # Personal script files
-export PATH=$PATH:~/scripts
-
-redshift.sh
-keyBoardOptions.sh 
+ 
 #Xresources
 
 xrdb -merge ~/.Xresources
@@ -22,5 +19,3 @@ xset s off
 
 
 # run the window manager
-exec xmonad
-gsettings set org.gnome.settings-daemon.plugins.cursor active false 
