@@ -68,14 +68,17 @@
     dmenu
     trayer
     haskellPackages.xmobar
+
+    # haskell dev
     haskellPackages.ghc
     haskellPackages.cabal-install
     haskellPackages.hakyll
-    
+    cabal2nix
+
+    # Python dev
     pythonPackages.python
     pythonPackages.pip
     pythonPackages.virtualenv
-    
     
     # dev tools
     git
@@ -89,11 +92,13 @@
     redshift
     firefoxWrapper
     python34Packages.dantalian
-    
+    nox
+
     # Media/Entertainment
     vlc
     mpd
     ncmpcpp
+    mcomix
     youtube-dl
     pythonPackages.livestreamer
     deluge
