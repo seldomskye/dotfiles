@@ -70,18 +70,9 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-export ATLAS=None
-export BLAS=/usr/local/opt/openblas/lib/libopenblas.dylib
-export LAPACK=/usr/local/opt/openblas/lib/libopenblas.dylib
-export AXIS_HOME=~/axis-1_4
 alias ls='ls -ltrhG --color=always'
 alias ec='emacsclient -tc -a ""'
-alias ctags=/usr/local/Cellar/ctags/5.8/bin/ctags
-alias emacs=/usr/local/Cellar/emacs-mac/emacs-24.4-mac-5.2/bin/emacs-24.4
-alias gradle110=/usr/local/Cellar/gradle110/1.10/bin/gradle
 
-alias brewDir=/usr/local/
-alias caskDir=/opt/homebrew-cask/
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.

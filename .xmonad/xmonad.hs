@@ -46,7 +46,7 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     [ ((myModMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((myModMask,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((myModMask,               xK_p     ), spawn "dmenu_run")
 
     -- launch gmrun
     , ((myModMask .|. shiftMask, xK_p     ), spawn "gmrun")
