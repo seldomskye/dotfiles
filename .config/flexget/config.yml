@@ -1,0 +1,5 @@
+tasks:
+  test task:
+    rss: http://www.shanaproject.com/feeds/secure/user/7085/YTGS6BPK1C/
+    accept_all: yes
+    download: /home/sean/downloads
