@@ -16,7 +16,9 @@
     allowUnfree = true;  
     firefox = {
       enableAdobeFlash = true;
+    enableGoogleTalkPlugin = true;
     };
+    allowBroken = true;
  };
  users.extraUsers.sean = 
     { isNormalUser = true;
@@ -58,13 +60,14 @@
   environment.systemPackages = with pkgs; [
     # networking
     wpa_supplicant_gui
-    
+    texLiveFull    
     xlibs.xmessage
 
     # Desktop manager
     haskellPackages.xmonad
     haskellPackages.xmonad-contrib
     haskellPackages.xmonad-extras
+    #haskellPackages.ghc-mod
     dmenu
     trayer
     haskellPackages.xmobar
@@ -72,14 +75,19 @@
     # haskell dev
     haskellPackages.ghc
     haskellPackages.cabal-install
-    haskellPackages.hakyll
+#    haskellPackages.hakyll
     cabal2nix
+    haskellPackages.ghc-mod
+    haskellPackages.ghci-ng
+    haskellPackages.hlint
+    haskellPackages.stylish-haskell
+    haskellPackages.hasktags
 
     # Python dev
     pythonPackages.python
-    pythonPackages.pip
-    pythonPackages.virtualenv
-    
+#    pythonPackages.pip
+#    pythonPackages.virtualenv
+    openjdk    
     # dev tools
     git
     silver-searcher
@@ -87,11 +95,11 @@
     emacs
     rxvt_unicode
     wget
-
+    gimp
     owncloudclient
     redshift
     firefoxWrapper
-    python34Packages.dantalian
+#    python34Packages.dantalian
     nox
 
     # Media/Entertainment
@@ -101,13 +109,13 @@
     mcomix
     youtube-dl
     pythonPackages.livestreamer
-    deluge
+    rtorrent
+    pythonPackages.flexget
     steam
   ];
 
   # List services that you want to enable:
-
-  services.xserver = {
+    services.xserver = {
     enable = true;
     layout = "us";
     xkbOptions = "caps:swapescape";
@@ -122,9 +130,11 @@
     enable = true; 
     musicDirectory = "/media/music/"; 
   };
-
-  services.deluge = {
+  services.cron = {
     enable = true;
+    systemCronJobs = [
+      "0 0 * * * /media/anime/animeSorter"
+    ];
   };
 
   services.redshift = {
