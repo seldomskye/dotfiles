@@ -41,8 +41,11 @@
 
       ;; helm-register
       (set-in-all-evil-states-but-insert (kbd "M-r") 'helm-register))
-    )
-)
+    (add-to-list 'helm-completing-read-handlers-alist '(org-set-tags-command))
+    (add-to-list 'helm-completing-read-handlers-alist '(org-set-tags))
+    (add-to-list 'helm-completing-read-handlers-alist '(org-match-sparse-tree)))
+
+        ) 
 
 (defun lalopmak-evil/init-lalopmak-evil-org-mode ()
   (add-to-load-path (expand-file-name"~/.mycontribs/lalopmak-evil/extensions/lalopmak-evil-org-mode/"))

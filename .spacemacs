@@ -18,7 +18,11 @@
      ;; themes
      lalopmak-evil
      python
-     haskell
+     (haskell
+      :variables
+      haskell-enable-ghci-ng-support t
+      haskell-enable-ghc-mod-support t
+      )
      html
      javascript
      auto-completion
@@ -52,7 +56,7 @@ before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
-   ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
+      ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    dotspacemacs-editing-style 'vim
    ;; If non nil output loading progess in `*Messages*' buffer.
