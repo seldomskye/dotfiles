@@ -1,0 +1,31 @@
+#session = /srv/torrent/session
+
+# Default directory to save the downloaded torrents.
+directory = /media/anime/unsorted
+check_hash = yes
+session = ~/.rtorrent.session
+
+schedule = watch_directory,5,5,"load_start=/home/sean/downloads/*.torrent,d.set_custom1=/media/anime/unsorted/"
+# Watch a directory for new torrents and set the download target path
+port_range = 49164-49164
+
+#ratio usage with rtorrent above 0.8.4
+# Enable the default ratio group.
+ratio.enable=
+# Change the limits, the defaults should be sufficient.
+ratio.min.set=300
+ratio.max.set=2000
+ratio.upload.set=200M
+# Changing the command triggered when the ratio is reached.
+#system.method.set = group.seeding.ratio.command, d.close=, d.erase=
+
+
+# Save session data
+#schedule = session_save,240,300,session_save=
+
+# Move finished downloads to downloaded - for rtorrent above 0.8.6/12.6
+system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1="
+system.method.set_key = event.download.finished,set_done_var,d.set_custom2=
+
+# remove incomplete downloads from disk that have been deleted from rTorrent - for rtorrent above 0.8.6/12.6
+system.method.set_key = event.download.erased,rm_incomplete,"branch=d.get_custom2=,\"execute={rm,-rf,--,$d.get_base_path=}\""
