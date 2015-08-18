@@ -14,4 +14,4 @@ alias htmlLoc="python -m http.server"
 export EDITOR=ec
 export VISUAL=ec
 
-cd ~
+alias ec='emacsclient -tc -a ""'
