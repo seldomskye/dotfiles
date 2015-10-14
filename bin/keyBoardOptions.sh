@@ -1,3 +1,3 @@
 #!/bin/bash
 
-setxkbmap us -variant colemak
+setxkbmap us -variant colemak caps:swapescape

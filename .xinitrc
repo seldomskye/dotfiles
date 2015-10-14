@@ -4,8 +4,8 @@
 # keymap rebindings, here it sets caps lock to be escape
 
 # uses feh to set my background image
-sh ~/.fehbg &
-
+#sh ~/.fehbg &
+/home/skye/dotfiles/bin/keyBoardOptions.sh
 # Start up programs
 
 # Personal script files
@@ -19,3 +19,4 @@ xset s off
 
 
 # run the window manager
+xmonad

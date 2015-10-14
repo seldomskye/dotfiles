@@ -48,7 +48,7 @@
         ) 
 
 (defun lalopmak-evil/init-lalopmak-evil-org-mode ()
-  (add-to-load-path (expand-file-name"~/.mycontribs/lalopmak-evil/extensions/lalopmak-evil-org-mode/"))
+  (add-to-load-path (expand-file-name "~/.mycontribs/lalopmak-evil/extensions/lalopmak-evil-org-mode/"))
   (require 'lalopmak-evil-org-mode)
   (defun kk/run-with-no-helm (orig-func &rest args)
     "Run a function without helm completion."
@@ -68,8 +68,8 @@
   (advice-add 'org-completing-read-no-i :around 'kk/run-with-no-helm)
 
   ; I store the specifics of my org configuration with my org files because updating projects is annoying otherwise
-  (add-to-load-path "~/org/")
-  (load "tag_groups")
+;  (add-to-load-path "~/org/")
+;  (load "tag_groups")
 
 
   ; copied from Sacha Chua's config

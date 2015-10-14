@@ -7,8 +7,6 @@
              , Run Memory ["-t","Mem: <usedratio>%"] 10  
            , Run Date "%a %b %_d %l:%M" "date" 10  
            , Run StdinReader 
-	   , Run Weather "KBOS" [ "-t", "<station>: <tempF>F", "-L", "40", "-H", "75", "--normal", "green", "--high", "red", "--low", "lightblue"] 36000
-	   , Run MPD ["-t", "<artist> - <title> (<album>) - <track>/<plength> <statei> ", "--", "-P", ">>", "-Z", "|", "-S", "><"] 10
 	   , Run Battery        [ "--template" , "Batt: <acstatus>"
            , "--Low"      , "10"        -- units: %
            , "--High"     , "80"        -- units: %
