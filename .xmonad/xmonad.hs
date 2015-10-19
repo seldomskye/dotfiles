@@ -10,15 +10,14 @@ import qualified XMonad.StackSet as W
 import System.Exit
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.EwmhDesktops
 
 main :: IO ()
 main = do
-    xmproc <- spawnPipe "xmobar"
-    spawn "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16"
-    xmonad $  myConfig
+    xmonad $ ewmh myConfig
       {  logHook = dynamicLogWithPP xmobarPP
-           { ppOutput = hPutStrLn xmproc
-           , ppTitle = xmobarColor "blue" "" . shorten 50
+           { 
+            ppTitle = xmobarColor "blue" "" . shorten 50
            , ppLayout = const "" -- to disable the layout info on xmobar
            }
       }
@@ -46,7 +45,7 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     [ ((myModMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((myModMask,               xK_p     ), spawn "dmenu_run")
+    , ((myModMask,               xK_p     ), spawn "krunner")
 
     -- launch gmrun
     , ((myModMask .|. shiftMask, xK_p     ), spawn "gmrun")
