@@ -68,8 +68,8 @@
   (advice-add 'org-completing-read-no-i :around 'kk/run-with-no-helm)
 
   ; I store the specifics of my org configuration with my org files because updating projects is annoying otherwise
-;  (add-to-load-path "~/org/")
-;  (load "tag_groups")
+  (add-to-load-path "~/org/")
+  (load "tag_groups")
 
 
   ; copied from Sacha Chua's config
