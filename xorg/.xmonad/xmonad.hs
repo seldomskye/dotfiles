@@ -11,22 +11,18 @@ import System.Exit
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Layout.Spacing
 
 main :: IO ()
 main = do
     xmonad $ ewmh myConfig
-      {  logHook = dynamicLogWithPP xmobarPP
-           { 
-            ppTitle = xmobarColor "blue" "" . shorten 50
-           , ppLayout = const "" -- to disable the layout info on xmobar
-           }
-      }
+      
 myManageHook = composeAll
                [ isFullscreen --> doFullFloat
                , className =? "feh" --> doFloat]
 myConfig = defaultConfig {focusFollowsMouse = False
       , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
-      , layoutHook = avoidStruts $ layoutHook defaultConfig
+      , layoutHook = smartSpacing 5 $ avoidStruts $ layoutHook defaultConfig
       , modMask = myModMask
       , keys = myKeys
       , startupHook = setWMName "LG3D" -- to let swing applications work because it's hard coded to check WM name.
@@ -45,7 +41,7 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     [ ((myModMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((myModMask,               xK_p     ), spawn "krunner")
+    , ((myModMask,               xK_p     ), spawn "gmrun")
 
     -- launch gmrun
     , ((myModMask .|. shiftMask, xK_p     ), spawn "gmrun")
