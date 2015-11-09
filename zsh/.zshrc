@@ -71,6 +71,7 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 alias ec='emacsclient -tc -a ""'
+alias calc='python3 -ic "from math import *; import cmath"'
 export PATH=~/.local/bin/:$PATH
 export RUST_SRC_PATH=/usr/src/rust/src 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
