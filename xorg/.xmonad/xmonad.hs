@@ -19,7 +19,9 @@ main = do
       
 myManageHook = composeAll
                [ isFullscreen --> doFullFloat
-               , className =? "feh" --> doFloat]
+               , className =? "feh" --> doFloat
+               , className =? "P" --> doFloat
+               ]
 myConfig = defaultConfig {focusFollowsMouse = False
       , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
       , layoutHook = smartSpacing 5 $ avoidStruts $ layoutHook defaultConfig
@@ -46,6 +48,7 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     -- launch gmrun
     , ((myModMask .|. shiftMask, xK_p     ), spawn "gmrun")
 
+    , ((myModMask .|. shiftMask, xK_d), spawn "scrot")
     -- close focused window
     , ((myModMask .|. shiftMask, xK_c     ), kill1)
 
