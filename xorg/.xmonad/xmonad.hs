@@ -1,29 +1,24 @@
 import XMonad
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Util.Run
 import XMonad.Actions.CopyWindow
-import System.IO
 import qualified Data.Map as M
-import Data.Bits ((.|.))
 import qualified XMonad.StackSet as W
 import System.Exit
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.Spacing
 
 main :: IO ()
 main = do
-    xmonad $ ewmh myConfig
+    xmonad $ myConfig
       
 myManageHook = composeAll
                [ isFullscreen --> doFullFloat
                , className =? "feh" --> doFloat
                , className =? "P" --> doFloat
                ]
-myConfig = defaultConfig {focusFollowsMouse = False
-      , manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
+myConfig = def {focusFollowsMouse = False
+      , manageHook = myManageHook <+> manageHook defaultConfig
       , layoutHook = smartSpacing 5 $ avoidStruts $ layoutHook defaultConfig
       , modMask = myModMask
       , keys = myKeys
@@ -33,6 +28,7 @@ myConfig = defaultConfig {focusFollowsMouse = False
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
+
 myModMask :: KeyMask
 myModMask = mod4Mask
 
@@ -110,6 +106,19 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     -- Restart xmonad
     , ((myModMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
     ]
+        ++
+
+    --
+    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
+    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+    --
+    [((m .|. myModMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_q, xK_w, xK_f] [0..]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    ++
+    [((m .|. myModMask, k), windows $ f i)
+     | (i, k) <- zip (workspaces conf) [xK_1 ..]
+     , (f, m) <- [(W.view, 0), (W.shift, shiftMask), (copy, shiftMask .|. controlMask)]]
     ++
 
     --
@@ -121,16 +130,3 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     [((m .|. myModMask, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
-
-    --
-    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    --
-    [((m .|. myModMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_f, xK_a] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-    ++
-    [((m .|. myModMask, k), windows $ f i)
-     | (i, k) <- zip (workspaces conf) [xK_1 ..]
-     , (f, m) <- [(W.view, 0), (W.shift, shiftMask), (copy, shiftMask .|. controlMask)]]
