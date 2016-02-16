@@ -119,4 +119,8 @@
 (defun notes-create-or-goto ()
   "Bring up helm and search for a note, then either create a note if none is found or go there")
 
+(defun notes-open-buffer ()
+  (interactive)
+  (find-file "~/org/zettel.org"))
+
 (provide 'skye-notes)

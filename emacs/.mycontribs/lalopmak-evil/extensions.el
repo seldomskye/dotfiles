@@ -21,7 +21,10 @@
         "ob" 'helm-org-in-buffer-headings
         "oa" 'helm-org-agenda-files-headings
         "ol" 'notes-link)
+      (spacemacs/set-leader-keys
+        "oo" 'notes-open-buffer)
       )
+    
     ))
 
 (defun lalopmak-evil/init-lalopmak-evil ()
