@@ -22,8 +22,10 @@ myConfig = def {focusFollowsMouse = False
       , layoutHook = smartSpacing 5 $ avoidStruts $ layoutHook defaultConfig
       , modMask = myModMask
       , keys = myKeys
-      , startupHook = setWMName "LG3D" -- to let swing applications work because it's hard coded to check WM name.
-      , terminal = "xfce4-terminal"
+      , startupHook = do
+          setWMName "LG3D" -- to let swing applications work because it's hard coded to check WM name.
+          spawn "compton"
+      , terminal = "urxvt"
       }
 
 myFocusFollowsMouse :: Bool

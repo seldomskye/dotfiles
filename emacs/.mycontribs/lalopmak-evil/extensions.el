@@ -2,17 +2,34 @@
   '(
     lalopmak-evil
     lalopmak-evil-org-mode
+    skye-notes
   )
 )
 (defvar lalopmak-evil-excluded-packages
   '(
     evil-org-mode
-))
+    ))
+
+(defun lalopmak-evil/init-skye-notes ()
+  (add-to-load-path (expand-file-name "~/.mycontribs/lalopmak-evil/extensions/skye-notes/"))
+  (use-package skye-notes
+    :init
+    (progn ())
+    :config
+    (progn
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode 
+        "ob" 'helm-org-in-buffer-headings
+        "oa" 'helm-org-agenda-files-headings
+        "ol" 'notes-link)
+      )
+    ))
+
 (defun lalopmak-evil/init-lalopmak-evil ()
   (use-package lalopmak-evil 
     :init
     (progn
       (require 'helm-config)
+      (require 'helm-org)
       (helm-mode 1))
     :config
     (progn
@@ -88,6 +105,5 @@
 
   (evil-leader/set-key
     "Cc" 'org-capture
-    "Ca" 'org-agenda
-    )
+    "Ca" 'org-agenda)
   )

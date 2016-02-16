@@ -13,7 +13,7 @@ xterm*ScrollBar: true
 ! stop output to terminal from jumping down to bottom of scroll again
 xterm*scrollTtyOutput: false
 
-URxvt*font xft:DejaVu:size=11
+URxvt.font: xft:DejaVuSansMono:size=12 
 URxvt.scroolstyle: xterm
 
 URxvt*.transparent: false

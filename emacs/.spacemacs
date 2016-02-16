@@ -4,6 +4,9 @@
 
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
+
+  
+
   (setq-default
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
@@ -51,6 +54,8 @@
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
 before layers configuration."
+  (setq org-completion-use-ido nil)
+  (setq org-outline-path-complete-in-steps nil)
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -171,7 +176,7 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  (defun replace-last-sexp ()
+    (defun replace-last-sexp ()
     (interactive)
     (let ((value (eval (preceding-sexp))))
       (kill-sexp -1)
@@ -198,7 +203,8 @@ layers configuration."
  '(haskell-process-path-ghci "stack")
  '(org-agenda-files
    (quote
-    ("~/org/buy_list.org" "~/org/habits.org" "~/org/oldNotes.org" "~/org/notes.org")))
+    ("~/org/zettel.org" "~/org/buy_list.org" "~/org/habits.org")))
+ '(org-outline-path-complete-in-steps nil)
  '(package-selected-packages
    (quote
     (toc-org org-repo-todo org-present org-pomodoro org-bullets htmlize evil-org alert log4e gntp macrostep elisp-slime-nav diff-hl auto-complete avy names ghc company anzu iedit smartparens highlight flx flycheck haskell-mode popup pos-tip guide-key popwin request gitignore-mode projectile helm helm-core parent-mode async markdown-mode s pkg-info epl evil-leader evil bind-key dash paradox magit company-quickhelp magit-popup git-commit with-editor spinner window-numbering volatile-highlights vi-tilde-fringe use-package smooth-scrolling smeargle shm shell-pop rfringe rainbow-delimiters powerline pcre2el page-break-lines open-junk-file neotree multi-term move-text mmm-mode markdown-toc linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-anything hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-descbinds helm-c-yasnippet helm-ag haskell-snippets guide-key-tip google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fringe-helper flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-terminal-cursor-changer evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu company-statistics company-ghc company-cabal cmm-mode clean-aindent-mode buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary aggressive-indent adaptive-wrap ace-window ace-link ace-jump-mode ac-ispell)))
