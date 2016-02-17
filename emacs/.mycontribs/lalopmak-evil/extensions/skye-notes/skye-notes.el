@@ -1,5 +1,6 @@
 (require 'evil)
 (require 'org)
+(require 'notes-capture-templates)
 
 (defun worf--goto-candidates ()
   (let ((extra (< (buffer-size) 100000))
@@ -42,8 +43,11 @@
     str))
 
 
-(defun worf-goto-action (x)
+(defun notes-goto-action (x)
   (goto-char x)
+  (notes-re-open-headings))
+
+(defun notes-re-open-headings ()
   (outline-show-children 1000)
   (org-show-subtree)
   (org-cycle-hide-drawers 'all)
@@ -106,7 +110,7 @@
          helm-candidate-number-limit) 
         (heading-present `((name . "Headings")
                            (candidates . ,cands)
-                           (action . worf-goto-action)))
+                           (action . notes-goto-action)))
         (heading-not-present `((name . "Headings Fallback")
                                (dummy)
                                (action . notes-insert-heading)))
@@ -115,6 +119,16 @@
 
     (helm :sources
                         )))
+
+(defun notes-new-inbox-header ()
+  (interactive)
+  (notes-open-buffer)
+  (goto-char 0)
+  (end-of-line)
+  (insert "\n** ")
+  (notes-re-open-headings)
+  (evil-append 1)
+  )
 
 (defun notes-create-or-goto ()
   "Bring up helm and search for a note, then either create a note if none is found or go there")

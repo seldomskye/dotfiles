@@ -1,17 +1,12 @@
-(defvar lalopmak-evil-post-extensions
-  '(
-    lalopmak-evil
-    lalopmak-evil-org-mode
-    skye-notes
-  )
-)
-(defvar lalopmak-evil-excluded-packages
-  '(
-    evil-org-mode
-    ))
+(setq lalopmak-evil-packages
+      '(
+        (lalopmak-evil :location local)
+        (lalopmak-evil-org-mode :location local)
+        (skye-notes :location local)
+        (evil-org-mode :excluded t)
+))
 
 (defun lalopmak-evil/init-skye-notes ()
-  (add-to-load-path (expand-file-name "~/.mycontribs/lalopmak-evil/extensions/skye-notes/"))
   (use-package skye-notes
     :init
     (progn ())
@@ -69,7 +64,6 @@
         ) 
 
 (defun lalopmak-evil/init-lalopmak-evil-org-mode ()
-  (add-to-load-path (expand-file-name "~/.mycontribs/lalopmak-evil/extensions/lalopmak-evil-org-mode/"))
   (require 'lalopmak-evil-org-mode)
   (defun kk/run-with-no-helm (orig-func &rest args)
     "Run a function without helm completion."
