@@ -43,10 +43,17 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     -- launch dmenu
     , ((myModMask,               xK_p     ), spawn "gmrun")
 
+    -- launch emacs
+    , ((myModMask, xK_v), spawn "~/bin/ec")
+
+
+    -- launch firefox
+    , ((myModMask, xK_z), spawn "firefox")
     -- launch gmrun
     , ((myModMask .|. shiftMask, xK_p     ), spawn "gmrun")
 
-    , ((myModMask .|. shiftMask, xK_d), spawn "scrot")
+    , ((myModMask .|. shiftMask, xK_d     ), spawn "scrot")
+      
     -- close focused window
     , ((myModMask .|. shiftMask, xK_c     ), kill1)
 
