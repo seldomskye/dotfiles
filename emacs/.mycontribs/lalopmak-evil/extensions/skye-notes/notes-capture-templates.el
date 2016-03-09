@@ -63,7 +63,7 @@ Created: %u
            (file+olp "~/org/zettel.org" "Inbox")
            ,todo-note)
           ("v" "Weekly Review" entry
-           (file+datetree "~/org/weeklyReview.org")
+           (file+datetree "~/org/zettel.org")
            ,basic-note)
           ("w" "Work" entry
            (file+olp "~/org/zettel.org" "Work" "Hubspot")

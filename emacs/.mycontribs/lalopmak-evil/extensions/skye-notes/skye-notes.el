@@ -2,6 +2,42 @@
 (require 'org)
 (require 'notes-capture-templates)
 
+
+(defvar worf--keyword nil
+  "Current `org-mode' keyword, i.e. one of \"TODO\", \"DONE\" etc.")
+
+(defsubst worf-mod-keyword ()
+  "Return current keyword."
+  worf--keyword)
+
+(defun worf--at-property-p ()
+  "Return t if point is at property."
+  (looking-at "^:"))
+
+(defvar worf-sharp "^#\\+"
+  "Shortcut for the org's #+ regex.")
+
+(defun worf-down (arg)
+  "Move ARG headings down."
+  (interactive "p")
+  (cond ((worf-mod-keyword)
+         (worf-dotimes-protect arg
+                               (worf--next-keyword (worf-mod-keyword))))
+        ((worf--at-property-p)
+         (worf--next-property arg))
+        ((looking-at worf-sharp)
+         (worf--sharp-down))
+        (t
+         (ignore-errors
+           (let ((pt 0)
+                 (i 0))
+             (while (and (<= (cl-incf i) arg)
+                         (> (point) pt))
+               (setq pt (point))
+               (outline-next-visible-heading 1))
+             (unless (= i (1+ arg))
+               (message "End reached after %s headings" i)))))))
+
 (defun worf--goto-candidates ()
   (let ((extra (< (buffer-size) 100000))
         candidates)
@@ -50,7 +86,7 @@
 (defun notes-re-open-headings ()
   (outline-show-children 1000)
   (org-show-subtree)
-  (org-cycle-hide-drawers 'all)
+  (org-show-siblings)
   (recenter))
 
 (defun notes-link ()
@@ -68,22 +104,21 @@
 
 (defun notes-link-notes (x)
   "Link the note at the current position with the candidate"
-  (notes-make-or-goto-links-drawer)
   (let ((start (point)))
-    (notes-make-link start)
+    (goto-char x)
+    (call-interactively 'org-store-link)
+    (goto-char start)
+    (notes-make-or-goto-links-drawer)
+    (org-insert-all-links 1)
+    (delete-blank-lines)
     )) 
 
-(defun notes-make-link (start)
-  (goto-char x)
-  (call-interactively 'org-store-link)
-  (goto-char start)
-  (org-insert-all-links 1)
-  (delete-blank-lines))
 
 (defvar notes-link-drawer-name "Links")
 (defvar notes-link-drawer-re ":Links:[[:unibyte:]]*?:END:")
 
 (defun notes-make-or-goto-links-drawer ()
+  (interactive)
   (org-back-to-heading t)
   (forward-line)
   (when (org-looking-at-p org-property-drawer-re)
