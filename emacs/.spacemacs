@@ -31,8 +31,14 @@
             shell-default-term-shell "/bin/zsh")
      syntax-checking
      version-control
+     twitch
+     protobuf
+     erc
      (haskell :variables
               haskell-enable-hindent-style "chris-done"
+              haskell-enable-ghci-ng-support t
+              haskell-process-type 'ghci
+              haskell-enable-ghc-mod-support nil
               )
      (elfeed :variables
              rmh-elfeed-org-files (list "~/org/elfeed.org")
@@ -198,7 +204,8 @@ layers configuration."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(haskell-interactive-popup-errors nil)
+ '(erc-input-line-position -2)
+ '(haskell-interactive-popup-errors nil t)
  '(haskell-process-args-ghci (quote ("ghci")))
  '(haskell-process-path-ghci "stack")
  '(org-agenda-files
