@@ -25,6 +25,8 @@
      org
      rust
      restclient
+     javascript
+     yaml
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom
@@ -34,6 +36,7 @@
      twitch
      protobuf
      erc
+     spell-checking
      (haskell :variables
               haskell-enable-hindent-style "chris-done"
               haskell-enable-ghci-ng-support t
