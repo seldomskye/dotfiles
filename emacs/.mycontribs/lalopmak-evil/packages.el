@@ -92,12 +92,14 @@
         '((sequence
            "TODO(t)"  ; next action
            "STARTED(s)"
+           "BLOCKED(b)"
            "WAITING(w)"
            "SOMEDAY(.)" "|" "DONE(x)" "CANCELLED(c)")
           ))
   (setq org-todo-keyword-faces
         '(("TODO" . (:foreground "#ef2929" :weight bold))
           ("DONE" . (:foreground "#cyan-2" :weight bold))
+          ("BLOCKED" . (:forground "GREEN" :weight bold))
           ("WAITING" . (:foreground "#c4a000" :weight bold))
           ("SOMEDAY" . (:foreground "gray" :weight bold))))
 
