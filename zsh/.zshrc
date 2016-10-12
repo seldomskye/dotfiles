@@ -72,8 +72,8 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 alias ec='emacsclient -tc -a ""'
 alias calc='python3 -ic "from math import *; import cmath"'
-export PATH=~/.local/bin/:$PATH
-export RUST_SRC_PATH=/usr/src/rust/src 
+export PATH=~/.local/bin/:/home/skye/.cargo/bin/:$PATH
+export RUST_SRC_PATH=/usr/src/rust/src
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.

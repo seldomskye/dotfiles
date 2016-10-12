@@ -5,8 +5,6 @@
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
 
-  
-
   (setq-default
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
@@ -29,16 +27,14 @@
             shell-default-height 30
             shell-default-position 'bottom
             shell-default-term-shell "/bin/zsh")
-     syntax-checking
+     ;; syntax-checking
      version-control
      twitch
      protobuf
      erc
      (haskell :variables
               haskell-enable-hindent-style "chris-done"
-              haskell-enable-ghci-ng-support t
-              haskell-process-type 'ghci
-              haskell-enable-ghc-mod-support nil
+               haskell-completion-backend 'intero
               )
      (elfeed :variables
              rmh-elfeed-org-files (list "~/org/elfeed.org")
@@ -199,13 +195,13 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
+ '(ahs-case-fold-search nil t)
+ '(ahs-default-range (quote ahs-range-whole-buffer) t)
+ '(ahs-idle-interval 0.25 t)
  '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
+ '(ahs-inhibit-face-list nil t)
  '(erc-input-line-position -2)
- '(haskell-interactive-popup-errors nil t)
+ '(haskell-interactive-popup-errors nil)
  '(haskell-process-args-ghci (quote ("ghci")))
  '(haskell-process-path-ghci "stack")
  '(org-agenda-files
@@ -214,8 +210,8 @@ layers configuration."
  '(org-outline-path-complete-in-steps nil)
  '(package-selected-packages
    (quote
-    (toc-org org-repo-todo org-present org-pomodoro org-bullets htmlize evil-org alert log4e gntp macrostep elisp-slime-nav diff-hl auto-complete avy names ghc company anzu iedit smartparens highlight flx flycheck haskell-mode popup pos-tip guide-key popwin request gitignore-mode projectile helm helm-core parent-mode async markdown-mode s pkg-info epl evil-leader evil bind-key dash paradox magit company-quickhelp magit-popup git-commit with-editor spinner window-numbering volatile-highlights vi-tilde-fringe use-package smooth-scrolling smeargle shm shell-pop rfringe rainbow-delimiters powerline pcre2el page-break-lines open-junk-file neotree multi-term move-text mmm-mode markdown-toc linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-anything hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-descbinds helm-c-yasnippet helm-ag haskell-snippets guide-key-tip google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fringe-helper flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-terminal-cursor-changer evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu company-statistics company-ghc company-cabal cmm-mode clean-aindent-mode buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary aggressive-indent adaptive-wrap ace-window ace-link ace-jump-mode ac-ispell)))
- '(ring-bell-function (quote ignore) t)
+    (uuidgen org-projectile org-download ob-http link-hint intero hlint-refactor helm-hoogle git-link seq eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff goto-chg undo-tree eshell-z org dumb-jump diminish company-ghci column-enforce-mode cargo xterm-color restclient restart-emacs persp-mode orgit lorem-ipsum helm-flx helm-company gnuplot git-gutter-fringe+ git-gutter-fringe git-gutter+ evil-magit evil-indent-plus esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks noflet define-word company-racer deferred bracketed-paste yasnippet auto-compile packed bind-map ws-butler toml-mode spaceline racer f rust-mode protobuf-mode org-plus-contrib magit-gitflow hl-todo help-fns+ flycheck-rust evil-mc eshell-prompt-extras elfeed-web simple-httpd elfeed-org elfeed-goodies elfeed ace-jump-helm-line git-gutter hydra quelpa package-build which-key toc-org org-repo-todo org-present org-pomodoro org-bullets htmlize evil-org alert log4e gntp macrostep elisp-slime-nav diff-hl auto-complete avy names ghc company anzu iedit smartparens highlight flx flycheck haskell-mode popup pos-tip guide-key popwin request gitignore-mode projectile helm helm-core parent-mode async markdown-mode s pkg-info epl evil-leader evil bind-key dash paradox magit company-quickhelp magit-popup git-commit with-editor spinner window-numbering volatile-highlights vi-tilde-fringe use-package smooth-scrolling smeargle shm shell-pop rfringe rainbow-delimiters powerline pcre2el page-break-lines open-junk-file neotree multi-term move-text mmm-mode markdown-toc linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-anything hindent highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flyspell helm-descbinds helm-c-yasnippet helm-ag haskell-snippets guide-key-tip google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md fringe-helper flycheck-pos-tip flycheck-haskell flx-ido fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-terminal-cursor-changer evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-jumper evil-indent-textobject evil-iedit-state evil-exchange evil-escape evil-args evil-anzu eval-sexp-fu company-statistics company-ghc company-cabal cmm-mode clean-aindent-mode buffer-move auto-yasnippet auto-highlight-symbol auto-dictionary aggressive-indent adaptive-wrap ace-window ace-link ace-jump-mode ac-ispell)))
+ '(ring-bell-function (quote ignore))
  '(safe-local-variable-values
    (quote
     ((haskell-indent-spaces . 2)

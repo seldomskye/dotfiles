@@ -7,7 +7,7 @@ import System.Exit
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.Spacing
-
+import XMonad.Config.Xfce
 main :: IO ()
 main = do
     xmonad $ myConfig
@@ -17,9 +17,9 @@ myManageHook = composeAll
                , className =? "feh" --> doFloat
                , className =? "P" --> doFloat
                ]
-myConfig = def {focusFollowsMouse = False
+myConfig = xfceConfig {focusFollowsMouse = False
       , manageHook = myManageHook <+> manageHook defaultConfig
-      , layoutHook = smartSpacing 5 $ avoidStruts $ layoutHook defaultConfig
+      , layoutHook = smartSpacing 5 $ layoutHook defaultConfig
       , modMask = myModMask
       , keys = myKeys
       , startupHook = do
@@ -110,7 +110,7 @@ myKeys conf@(XConfig {XMonad.modMask = myModMask}) = M.fromList $
     -- , ((myModMask              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((myModMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+    , ((myModMask .|. shiftMask, xK_y     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
     , ((myModMask              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
