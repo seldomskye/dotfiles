@@ -17,7 +17,7 @@ myManageHook = composeAll
                , className =? "feh" --> doFloat
                , className =? "P" --> doFloat
                ]
-myConfig = xfceConfig {focusFollowsMouse = False
+myConfig = defaultConfig {focusFollowsMouse = False
       , manageHook = myManageHook <+> manageHook defaultConfig
       , layoutHook = smartSpacing 5 $ layoutHook defaultConfig
       , modMask = myModMask
