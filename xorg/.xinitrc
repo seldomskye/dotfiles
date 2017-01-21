@@ -26,5 +26,8 @@ fi
 export GPG_AGENT_INFO  # the env file does not contain the export statement
 export SSH_AUTH_SOCK   # enable gpg-agent for ssh
 
+redshift &
+conky &
+
 # run the window manager
 xmonad

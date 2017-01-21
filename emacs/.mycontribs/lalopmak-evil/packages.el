@@ -6,7 +6,14 @@
 (defun lalopmak-evil/init-skye-notes ()
   (use-package skye-notes
     :init
-    (progn ())
+    (progn (setq org-agenda-custom-commands '(
+                                              ("t" alltodo "All TODOs"
+                                               ((org-agenda-files '("~/org/zettel.org")))
+                                               ("~/org/todos.txt"))
+                                               ("a" agenda "Agenda" 
+                                                ((org-agenda-start-on-weekday nil))
+                                                ("~/org/agenda.txt"))
+                                           )))
     :config
     (progn
       (spacemacs/set-leader-keys-for-major-mode 'org-mode 
