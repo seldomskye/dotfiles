@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.CopyWindow
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
@@ -17,9 +18,9 @@ myManageHook = composeAll
                , className =? "feh" --> doFloat
                , className =? "P" --> doFloat
                ]
-myConfig = defaultConfig {focusFollowsMouse = False
-      , manageHook = myManageHook <+> manageHook defaultConfig
-      , layoutHook = smartSpacing 5 $ layoutHook defaultConfig
+myConfig = ewmh $ def {focusFollowsMouse = False
+      , manageHook = myManageHook <+> manageHook def
+      , layoutHook = smartSpacing 5 $ layoutHook def
       , modMask = myModMask
       , keys = myKeys
       , startupHook = do

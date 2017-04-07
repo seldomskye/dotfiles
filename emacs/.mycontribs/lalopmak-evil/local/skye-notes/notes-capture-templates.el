@@ -77,4 +77,7 @@ Created: %u
         )
   )
 
+(setq org-todo-keywords
+      '((sequence "BLOCKED" "TODO" "DONE")))
+
 (provide 'notes-capture-templates)
