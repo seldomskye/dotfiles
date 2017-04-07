@@ -25,98 +25,98 @@
 
 ;;; Code:
 
-(defface sync-window-face ;; originally copied from font-lock-function-name-face
-  '((((class color) (min-colors 88) (background light)) (:foreground "Yellow" :background "Blue1"))
-    (((class color) (min-colors 88) (background dark)) (:foreground "Red" :background  "LightSkyBlue"))
-    (((class color) (min-colors 16) (background light)) (:foreground "Blue" :background "Yellow"))
-    (((class color) (min-colors 16) (background dark)) (:foreground "LightSkyBlue" :background "Yellow"))
-    (((class color) (min-colors 8)) (:foreground "blue" :bold t))
-    (t (:bold t)))
-  "Face used to highlight regions in `sync-window-mode' slaves."
-  :group 'sync-window)
-
-(defvar sync-window-overlay nil
-  "Overlay for current master region in `sync-window-mode' slaves.")
-(make-variable-buffer-local 'sync-window-overlay)
+(setq sync-window-windows (list))
 
 (defun sync-window-cleanup ()
-  "Clean up after `sync-window-mode'."
+  "Clean up after `sync-window-modeeq'.print
+  (lue is a single function; it sets or changes the value to a list of functions.
+
+If local is non-nil, that says to add function to the buffer-local hook list instead of to the global hook list. This makes the hooiemacs"
   (interactive)
-  (if (overlayp sync-window-overlay)
-      (progn
-    (delete-overlay sync-window-overlay)
-    (setq sync-window-overlay nil))
-    (remove-overlays (point-min) (point-max) 'sync-window-slave t)))
+  )
 
 (defvar sync-window-master-hook nil
   "Hooks to be run by `sync-window' in the master window ")
 
+(defun set-syncing-windows ()
+  (interactive)
+  (let ((num-windows (length sync-window-windows))
+        (current-window (selected-window)))
+    (cond
+     ((= 0 num-windows) (setq sync-window-windows (list current-window)))
+     ((<= 2 num-windows) (setq sync-window-windows (list)))
+     ((= 1 num-windows) (setq sync-window-windows (cons current-window sync-window-windows)))
+     )
+    )
+  )
+
 (defun sync-window (&optional display-start)
   "Synchronize point position other window in current frame.
 Only works if there are exactly two windows in the active wrame not counting the minibuffer."
+
   (interactive)
-  (when (= (count-windows 'noMiniBuf) 2)
-    (let ((p (line-number-at-pos))
-      (start (line-number-at-pos (or display-start (window-start))))
-      (vscroll (window-vscroll))
-      breg ereg)
-      (when (use-region-p)
-    (setq breg (line-number-at-pos (region-beginning))
-          ereg  (line-number-at-pos (if (looking-back "\n") (1- (region-end)) (region-end)))))
-      (run-hooks 'sync-window-master-hook)
-      (other-window 1)
-      (goto-char (point-min))
-      (when breg
-    (sync-window-cleanup)
-    (overlay-put (setq sync-window-overlay (make-overlay (line-beginning-position breg) (line-end-position ereg))) 'face 'sync-window-face)
-    (overlay-put sync-window-overlay 'sync-window-slave t))
-      (setq start (line-beginning-position start))
-      (forward-line (1- p))
-      (set-window-start (selected-window) start)
-      (set-window-vscroll (selected-window) vscroll)
-      (other-window 1)
-      (unless display-start
-    (redisplay t))
-      )))
+  (if (and
+       (= (length sync-window-windows) 2) ; Need a liveness check
+       (window-live-p  (first sync-window-windows))
+       (window-live-p  (second sync-window-windows)))
+      (let ((p (line-number-at-pos))
+            (start (line-number-at-pos (or display-start (window-start))))
+            (vscroll (window-vscroll))
+            breg ereg)
+        (when (use-region-p)
+          (setq breg (line-number-at-pos (region-beginning))
+                ereg  (line-number-at-pos (if (looking-back "\n") (1- (region-end)) (region-end)))))
+        (run-hooks 'sync-window-master-hook)
+        (select-window (first sync-window-windows)) ;; 1st element = gets synced
+        (goto-char (point-min))
+        (when breg
+          (sync-window-cleanup)
+        (setq start (line-beginning-position start))
+        (forward-line (1- p))
+        (set-window-start (selected-window) start)
+        (set-window-vscroll (selected-window) vscroll)
+        (select-window (second sync-window-windows)) ;; 2nd element = sync with
+        (unless display-start
+          (redisplay t))
+        )
+    (setq sync-window-windows (list))))
 
 (defvar sync-window-mode-hook nil
   "Hooks to be run at start of `sync-window-mode'.")
 
-(define-minor-mode sync-window-mode
+(defun window-sync-same-buffer ()
+  (interactive)
+  (set-window-buffer (first sync-window-windows) (window-buffer (second sync-window-windows))))
+
+(defun window-sync-window-hook ()
+  ""
+  (when (and (= 2 (length sync-window-windows))
+             (equal (selected-window) (second sync-window-windows)))
+    (set-window-buffer (first sync-window-windows) (window-buffer (second sync-window-windows)))
+    ))
+
+(define-minor-mode sync-window-mode ; Need to change this to be global rather than buffer local
   "Synchronized view of two buffers in two side-by-side windows."
   :group 'windows
   :lighter " ⇕"
   (if sync-window-mode
       (progn
-    (add-hook 'post-command-hook 'sync-window-wrapper 'append t)
-    (add-to-list 'window-scroll-functions 'sync-window-wrapper)
-    (run-hooks 'sync-window-mode-hook)
-    (sync-window))
-    (remove-hook 'post-command-hook 'sync-window-wrapper t)
+        (add-hook 'post-command-hook 'sync-window-wrapper 'append) ; this is bad because this is actually, adding to the buffer local list, but we would've expected..window local
+        (add-to-list 'window-scroll-functions 'sync-window-wrapper)
+        (add-hook 'window-configuration-change-hook 'window-sync-window-hook)
+        (run-hooks 'sync-window-mode-hook)
+        (sync-window))
+    (remove-hook 'post-command-hook 'sync-window-wrapper)
+    (remove-hook 'window-configuration-change-hook 'window-sync-window-hook)
     (setq window-scroll-functions (remove 'sync-window-wrapper window-scroll-functions))
     ))
 
 (defun sync-window-wrapper (&optional window display-start)
-  "This wrapper makes sure that `sync-window' is fired from `post-command-hook'
+    "This wrapper makes sure that `sync-window' is fired from `post-command-hook'
 only when the buffer of the active window is in `sync-window-mode'."
-  (with-selected-window (or window (selected-window))
-    (when sync-window-mode
-      (sync-window display-start))))
-
-(defvar mercury-blame-resize-min 5)
-
-(defun mercury-blame-resize ()
-  "Resize mercury blame window to blame string at point only."
-  (interactive) ;; for debugging
-  (save-excursion
-    (beginning-of-line)
-    (let ((n (skip-chars-forward "^:\n")))
-      (when (looking-at ":")
-    (condition-case err
-        (enlarge-window (- (max mercury-blame-resize-min n)
-                   (window-width) -1)
-                'horizontal)
-      (error))))))
+    ;; Maybe this only run if the current window is the one we're syncing to other modes
+    (when
+        (member (selected-window) sync-window-windows)
+      (sync-window display-start)))
 
 (provide 'sync-window)
-;;; sync-windows.el ends here
