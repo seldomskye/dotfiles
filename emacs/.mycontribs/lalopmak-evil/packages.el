@@ -1,6 +1,7 @@
 (setq lalopmak-evil-packages
       '(
         (skye-notes :location local)
+        (sync-window :location local)
 ))
 
 (defun lalopmak-evil/init-skye-notes ()
@@ -26,3 +27,13 @@
         )
       )
     ))
+
+(defun lalopmak-evil/init-sync-window ()
+  (use-package sync-window
+    :config
+    (progn
+      (spacemacs/set-leader-keys
+        "oz" 'window-sync-init)
+        "ox" 'sync-window-mode)
+    )
+  )
