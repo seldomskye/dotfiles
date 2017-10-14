@@ -1,81 +1,21 @@
-(defmacro buy-entry (name )
-  `(,(concat "b"(downcase (substring name 0 1)))
-    ,name
-    entry
-    (file+headline "~/org/buy_list.org" ,name)
-    "* TODO %?"
-    ))
-
-(defmacro recipe-entry (name)
-  `(,(concat "r"(downcase (substring name 0 1)))
-    ,name
-    entry
-    (file+olp "~/org/zettel.org" "Cooking" ,name)
-    "* %?"
-    ))
-
-(let*
-    (
-     (properties-source
-      ":PROPERTIES:
-:Source: %?
-:END:
-Created: %u
-%t
-")
-     (properties
-      ":PROPERTIES:
-:END:
-"
-      )
-     (title
-      "* %^{Title}
-")
-     (title-recipe
-      "* %^{Title} :recipe:
-")
-     (title-todo
-      "* TODO %^{Title}
-")
-     (prompt
-      "Created: %u
-%t
-%?
-")
-     (basic-note
-      (concat title properties prompt))
-     (basic-note-source
-      (concat title properties-source))
-     (recipe-note
-      (concat title-recipe properties-source))
-     (todo-note
-      (concat title-todo properties prompt))
-     (amazon (macroexpand '(buy-entry "Amazon"))
-             )
-     (baking (macroexpand '(recipe-entry "Baking")))
-     (meal (macroexpand '(recipe-entry "Meal")))
-     )
   (setq org-capture-templates
         `(("n" "Note" entry
-           (file+olp "~/org/zettel.org" "Inbox")
-           ,basic-note)
+           (file+olp "~/Dropbox (HubSpot)/work.org" "Inbox")
+           )
           ("t" "Todo" entry
-           (file+olp "~/org/zettel.org" "Inbox")
-           ,todo-note)
-          ("v" "Weekly Review" entry
-           (file+datetree "~/org/zettel.org")
-           ,basic-note)
-          ("w" "Work" entry
-           (file+olp "~/org/zettel.org" "Work" "Hubspot")
-           "* TODO %^{Title}")
-          ("b" "Stuff to Buy")
-          ,amazon
-          ("r" "Recipes")
-          ,baking
-          ,meal
+           (file+olp "~/Dropbox (HubSpot)/work.org" "Inbox")
+           "* TODO %?\n")
+          ("g" "Git Issue" entry
+           (file+olp "~/Dropbox (HubSpot)/work.org" "Dev Projects")
+           "* TODO [[https://git.hubteam.com/HubSpot/AutomationTeam/issues/%\\1][Issue %^{Issue Number?}]]\n"
+           )
+          ("j" "Jira Issue" entry
+           (file+olp "~/Dropbox (HubSpot)/work.org" "Jira Tickets")
+           "* TODO [[https://issues.hubspotcentral.com/browse/WORKFLOWS-%\\1][Ticket %^{Ticket Number?}]]\n"
+           )
           )
+        
         )
-  )
 
 (setq org-todo-keywords
       '((sequence "BLOCKED" "TODO" "DONE")))
